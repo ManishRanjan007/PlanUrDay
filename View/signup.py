@@ -5,7 +5,7 @@ from wtforms.validators import DataRequired, NumberRange, Email
 import flask, flask.views
 
 
-class SignUpForm():
+class SignUpForm(Form):
     firstname = StringField('firstname', validators=[DataRequired()])
     lastname = StringField('lastname', validators=[DataRequired()])
     mobile_numb = IntegerField('mobile_numb', validators = [NumberRange(min=1000000000, max=9999999999)])
