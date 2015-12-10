@@ -28,9 +28,12 @@ def validateUser():
         abort(400)
 
     try:
-        
-        userDetails = users.SelectUsers.selectUserWhereMobileNo(int(request.json.get('mobileno')), request.json.get('password'))
+        print("=================")
+        print(request.json.get('mobileno'))
+        userDetails = users.SelectUsers.selectUserWhereMobileNo(request.json.get('mobileno'), request.json.get('password'))
         userDetail_dict = []
+        print(userDetails)
+        print("==========******=====")
         for detail in userDetails:
             user_details = {
                     'userId' : detail[0],
@@ -46,7 +49,7 @@ def validateUser():
         return jsonify({'user_details' : user_details}), 201
     except Exception as e:
         print(e)
-        print("========Invalid LOgin===========")
+        print("========Invalid Login===========")
         return jsonify({'User' : 'Authentication Failed'}), 401
 
 @app.route('/addUser', methods=['POST'])

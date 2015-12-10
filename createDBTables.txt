@@ -1,60 +1,62 @@
-USE [PlanUrDay]
-GO
+/* SQLINES EVALUATION VERSION TRUNCATES VARIABLE NAMES AND COMMENTS. */
+/* OBTAIN A LICENSE AT WWW.SQLINES.COM FOR FULL CONVERSION. THANK YOU. */
 
-/****** Object:  Table [dbo].[Notification]    Script Date: 15-11-2015 22:15:51 ******/
-SET ANSI_NULLS ON
-GO
+USE `PlanUrDay`;
+ 
 
-SET QUOTED_IDENTIFIER ON
-GO
+/****** Objec... *** SQLINES FOR EVALUATION USE ONLY *** te: 15-11-2015 22:15:51 ******/
+/* SET ANSI_NULLS ON */
+ 
 
-SET ANSI_PADDING ON
-GO
+/* SET QUOTED_IDENTIFIER ON */
+ 
 
-CREATE TABLE [dbo].[Notification](
-	[Id] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
-	[Mobile_No_FK] [numeric](10, 0) NOT NULL,
-	[Message] [nvarchar](200) NOT NULL,
-	[Time] [datetime] NOT NULL,
-	[Repeat] [char](10) NOT NULL,
-	[Enable] [char](10) NOT NULL,
- CONSTRAINT [PK_Notification] PRIMARY KEY CLUSTERED 
+/* SET ANSI_PADDING ON */
+ 
+
+CREATE TABLE Notification(
+	`Id` bigint AUTO_INCREMENT NOT NULL,
+	`Mobile_No_FK` bigint NOT NULL,
+	`Message` nvarchar(200) NOT NULL,
+	`Time` datetime NOT NULL,
+	`IsRepeat` nvarchar(10) NOT NULL,
+	`IsEnable` nvarchar(10) NOT NULL,
+	Unique(Id),
+ CONSTRAINT `PK_Notification` PRIMARY KEY 
 (
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-
-SET ANSI_PADDING OFF
-GO
+	`Id` ASC
+) 
+);
 
 
-USE [PlanUrDay]
-GO
+/* SET ANSI_PADDING OFF */
+ 
 
-/****** Object:  Table [dbo].[User_Info]    Script Date: 15-11-2015 22:16:27 ******/
-SET ANSI_NULLS ON
-GO
 
-SET QUOTED_IDENTIFIER ON
-GO
+USE `PlanUrDay`;
+ 
 
-CREATE TABLE [dbo].[User_Info](
-	[UserID] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
-	[First_Name] [nvarchar](50) NOT NULL,
-	[Last_Name] [nvarchar](50) NOT NULL,
-	[Mobile_Number] [numeric](10, 0) NOT NULL,
-	[DOB] [date] NOT NULL,
-	[EmailID] [nvarchar](100) NOT NULL,
-	[Password] [nvarchar](50) NOT NULL,
-	[Notification_Table] [nvarchar](100) NULL,
- CONSTRAINT [pk_MobileNo] PRIMARY KEY CLUSTERED 
+/****** Objec... *** SQLINES FOR EVALUATION USE ONLY ***  15-11-2015 22:16:27 ******/
+/* SET ANSI_NULLS ON */
+ 
+
+/* SET QUOTED_IDENTIFIER ON */
+ 
+
+CREATE TABLE User_Info(
+	`UserID` bigint AUTO_INCREMENT NOT NULL,
+	`First_Name` nvarchar(50) NOT NULL,
+	`Last_Name` nvarchar(50) NOT NULL,
+	`Mobile_Number` numeric(10, 0) NOT NULL,
+	`DOB` date NOT NULL,
+	`EmailID` nvarchar(100) NOT NULL,
+	`Password` nvarchar(50) NOT NULL,
+	`Notification_Table` nvarchar(100) NULL,
+	Unique(UserID),
+ CONSTRAINT `pk_MobileNo` PRIMARY KEY 
 (
-	[Mobile_Number] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
+	`Mobile_Number` ASC
+) 
+);
 
 

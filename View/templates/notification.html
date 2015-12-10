@@ -85,7 +85,7 @@ function addTime(divname){
 	var newDiv=document.createElement('div');
 	newDiv.id = 'timeDiv';
    var html = 'Hours : <select id = "hrList" onchange = "buildDateTime()">', i;
-   for(i = 1; i < 24; i++) {
+   for(i = 0; i < 24; i++) {
        html += "<option value='"+i+"'>"+i+"</option>";
    }
    html += '</select>';

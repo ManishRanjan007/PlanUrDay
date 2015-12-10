@@ -6,13 +6,13 @@ class InsertIntoUsers:
        
         
         def insertUsers(firstname, lastname, mobileno, dob, emailid, password):
-                sql = """INSERT INTO [dbo].[User_Info]
-           ([First_Name]
-           ,[Last_Name]
-           ,[Mobile_Number]
-           ,[DOB]
-           ,[EmailID]
-           ,[Password]) values ('{0}','{1}','{2}','{3}','{4}','{5}')""".format(firstname, lastname, mobileno, dob, emailid, password)
+                sql = """INSERT INTO User_Info
+           (First_Name
+           ,Last_Name
+           ,Mobile_Number
+           ,DOB
+           ,EmailID
+           ,Password) values ('{0}','{1}','{2}','{3}','{4}','{5}')""".format(firstname, lastname, mobileno, dob, emailid, password)
                 print("----------" + sql)
                 db, cursor = dbConnect.connectDB()
                 cursor.execute(sql)
@@ -24,23 +24,31 @@ class SelectUsers:
         
        
         def selectUserWhereMobileNo(mobileNo, password):
-                sql = "select * from [dbo].[User_Info] where Mobile_Number = '{0}' and password = '{1}'".format(mobileNo, password)
-                db, cursor = dbConnect.connectDB()
-                userDetails = cursor.execute(sql)
+                sql = "select * from User_Info where Mobile_Number = '{0}' and password = '{1}'".format(mobileNo, password)
+                print(";;;;;;;;;;;;;;;;;;;;;;;;;;")
+                print(sql)
+                db,cursor = dbConnect.connectDB()
+                cursor.execute(sql)
+                userDetails = []
+                for userDetail in cursor:
+                        userDetails.append(userDetail)
                 return userDetails
 
         def selectAllUsers():
-                sql = "select * from [dbo].[User_Info]"
+                sql = "select * from User_Info"
                 db, cursor = dbConnect.connectDB()
-                userDetails = cursor.execute(sql)
+                cursor.execute(sql)
+                userDetails = []
+                for userDetail in cursor:
+                        userDetails.append(userDetail)
                 return userDetails
         
 class UpdateUsers:
        
 
         def updatePassword(mobileNo, newPassword):
-                sql = """UPDATE [dbo].[User_Info]
-                       SET [Password] = '{0}' where [Mobile_Number] = '{1}'""".format(newPassword, mobileNo)
+                sql = """UPDATE User_Info
+                       SET Password = '{0}' where Mobile_Number = '{1}'""".format(newPassword, mobileNo)
                 print("---------" + sql)
                 db, cursor = dbConnect.connectDB()
                 cursor.execute(sql)
@@ -49,7 +57,7 @@ class UpdateUsers:
 
 def printUserdetails(userDetails):
         for userD in userDetails:
-                print(userD[1])
+                print(userD1)
 
 
 #printUserdetails(SelectUsers.selectUserWhereMobileNo('7894561230'))

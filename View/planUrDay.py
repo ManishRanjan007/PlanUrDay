@@ -41,10 +41,12 @@ def signUp():
     signUpForm = SignUpForm()
     if signUpForm.signUpBTN.data and signUpForm.validate_on_submit():
         signUpFormData = signUpForm.data;
-        date = signUpFormData.get('dob123')
-        callPost.callPostServices("127.0.0.1", 5000, {"Content-type": "application/json",
-        "Accept": "application/json"}, {'firstname': signUpFormData.get('firstname'), 'lastname': signUpFormData.get('lastname'), 'mobileno': signUpFormData.get('mobile_numb'), 'dob': str(date), 'emailid':signUpFormData.get('emailID'), 'password': signUpFormData.get('password') } ,"/addUser")
-        return login()
+        if (signUpFormData.get('password') == signUpFormData.get('c_password')):
+            
+            date = signUpFormData.get('dob123')
+            callPost.callPostServices("127.0.0.1", 5000, {"Content-type": "application/json",
+            "Accept": "application/json"}, {'firstname': signUpFormData.get('firstname'), 'lastname': signUpFormData.get('lastname'), 'mobileno': signUpFormData.get('mobile_numb'), 'dob': str(date), 'emailid':signUpFormData.get('emailID'), 'password': signUpFormData.get('password') } ,"/addUser")
+            return login()
     return render_template('signUp.html',form=signUpForm)    
         
 @app.route('/addNotification', methods=['GET','POST'])
